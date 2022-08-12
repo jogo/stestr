@@ -152,11 +152,12 @@ class TestrConf:
         if os.path.exists('"%s"' % python):
             python = '"%s"' % python
 
-        command = (
-            '%s -m stestr.subunit_runner.run discover -t "%s" "%s" '
-            "$LISTOPT $IDOPTION" % (python, top_dir, test_path)
+        command = '%s -m pytest --subunit --rootdir="%s" "%s" ' "$LISTOPT $IDOPTION" % (
+            python,
+            top_dir,
+            test_path,
         )
-        listopt = "--list"
+        listopt = "--co"
         idoption = "--load-list $IDFILE"
         # If the command contains $IDOPTION read that command from config
         # Use a group regex if one is defined
